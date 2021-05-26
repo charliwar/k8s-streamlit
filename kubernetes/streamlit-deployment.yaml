@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: streamlit-deployment
+  name: streamlit-demo1
   labels:
-    env: dev
+    env: streamlit-demo1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      env: dev
+      env: streamlit-demo
   template:
     metadata:
       labels:
-        env: dev
+        env: streamlit-demo
     spec:
       containers:
       - name: streamlit
