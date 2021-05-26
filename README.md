@@ -57,3 +57,53 @@ kubectl apply -f ./nginx-svc.yaml
 kubectl delete configmap confnginx
 
 kubectl delete deployment nginx-deployment
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------
+Reference 
+https://aws.amazon.com/es/premiumsupport/knowledge-center/eks-access-kubernetes-services/
+
+
+Versión de nginx ingress controller 1.10.1
+https://github.com/nginxinc/kubernetes-ingress/tree/v1.10.1
+
+- Creamos el namespace
+    kubectl apply -f ns-and-sa.yaml
+
+- Creamos certificados
+    kubectl apply -f default-server-secret.yaml
+
+- Creamos configmap para la configuracion de NGINX
+kubectl apply -f nginx-config.yaml
+
+- Creamos el cluster role para los permisos en AWS
+kubectl apply -f rbac.yaml
+
+- Creamos ingress class (para cluster igual o superior a 1.18)
+kubectl apply -f ingress-class.yaml
+
+- Desplegamos ingress controller
+kubectl apply -f deployment/nginx-ingress.yaml
+kubectl get pods --namespace=nginx-ingress
+
+
+- Creamos load balancer
+kubectl apply -f service/loadbalancer-aws-elb.yaml
+
+kubectl get svc --namespace=nginx-ingress
+
+
+- Actualizamos config map (Configure NGINX to use the PROXY protocol so that you can pass proxy information to the Ingress Controller, and add the following keys to the nginx-config.yaml file from step 1. For example:)
+
+- Arrancamos los microservicios streamlit
+kubectl apply -f streamlit-demo1-svc.yaml
+kubectl apply -f streamlit-demo2-svc.yaml
+
+- Implement Ingress so that it interfaces with your services using a single load balancer provided by Ingress Controller. See the following micro-ingress.yaml example:
+
+kubectl apply -f micro-ingress.yaml
+
+
+kubectl apply -f path-ingress.yaml
