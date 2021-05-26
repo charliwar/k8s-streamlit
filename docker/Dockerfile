@@ -17,10 +17,9 @@ RUN curl -s https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
     python get-pip.py --force-reinstall && \
     rm get-pip.py
 
+RUN pip3 install streamlit
 # startup scripts
 ADD scripts/ /
-
-RUN pip3 install streamlit
 
 ENV REPOSITORY=empty
 
