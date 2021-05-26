@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+name: path-ingress
+annotations:
+  nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+rules:
+- host: hostname.mydomain.com
+  http:
+        paths:
+        - path: /demo1
+          backend:
+                serviceName: streamlit-demo1-svc
+                servicePort: 80
+        - path: /demo2
+          backend:
+                serviceName: streamlit-demo2-svc
+                servicePort: 80

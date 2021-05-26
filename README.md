@@ -27,6 +27,7 @@ aws configure
     - us-east-1
     - json 
 
+sudo yum install -y git
 curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.16.8/2020-04-16/bin/linux/amd64/kubectl
 chmod +x ./kubectl
 mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
@@ -35,7 +36,6 @@ curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/d
 sudo mv /tmp/eksctl /usr/bin
 eksctl version
 eksctl create cluster --name dev --version 1.16 --region us-east-1 --nodegroup-name standard-workers --node-type t3.micro --nodes 3 --nodes-min 1 --nodes-max 4 --managed
-sudo yum install -y git
 
 - Clone repository
 git clone https://github.com/charliwardbd/k8s-streamlit
@@ -44,3 +44,16 @@ git clone https://github.com/charliwardbd/k8s-streamlit
 kubectl apply -f ./streamlit-deployment.yaml
 
 kubectl apply -f ./streamlit-svc.yaml
+
+
+kubectl create configmap confnginx --from-file=nginx.conf
+
+kubectl apply -f ./nginx-deployment.yaml
+
+kubectl apply -f ./nginx-svc.yaml
+
+
+
+kubectl delete configmap confnginx
+
+kubectl delete deployment nginx-deployment
