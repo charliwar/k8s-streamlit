@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: streamlit-demo2
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: streamlit-demo2

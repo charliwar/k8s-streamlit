@@ -35,8 +35,10 @@ kubectl version --short --client
 curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 sudo mv /tmp/eksctl /usr/bin
 eksctl version
-eksctl create cluster --name dev --version 1.16 --region us-east-1 --nodegroup-name standard-workers --node-type t3.micro --nodes 3 --nodes-min 1 --nodes-max 4 --managed
+eksctl create cluster --name dev --version 1.20 --region us-east-1 --nodegroup-name standard-workers --node-type t3.micro --nodes 3 --nodes-min 1 --nodes-max 4 --managed
 
+
+--------------------------------------------------------------------
 - Clone repository
 git clone https://github.com/charliwardbd/k8s-streamlit
 
@@ -85,25 +87,25 @@ kubectl apply -f rbac.yaml
 kubectl apply -f ingress-class.yaml
 
 - Desplegamos ingress controller
-kubectl apply -f deployment/nginx-ingress.yaml
+kubectl apply -f nginx-ingress.yaml
 kubectl get pods --namespace=nginx-ingress
 
 
 - Creamos load balancer
-kubectl apply -f service/loadbalancer-aws-elb.yaml
+kubectl apply -f loadbalancer-aws-elb.yaml
 
 kubectl get svc --namespace=nginx-ingress
 
 
 - Actualizamos config map (Configure NGINX to use the PROXY protocol so that you can pass proxy information to the Ingress Controller, and add the following keys to the nginx-config.yaml file from step 1. For example:)
 
+kubectl apply -f nginx-config-update.yaml
+
 - Arrancamos los microservicios streamlit
+
 kubectl apply -f streamlit-demo1-svc.yaml
 kubectl apply -f streamlit-demo2-svc.yaml
 
 - Implement Ingress so that it interfaces with your services using a single load balancer provided by Ingress Controller. See the following micro-ingress.yaml example:
-
-kubectl apply -f micro-ingress.yaml
-
 
 kubectl apply -f path-ingress.yaml
