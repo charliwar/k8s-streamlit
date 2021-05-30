@@ -7,6 +7,6 @@ For testing purpose you can run on local in a Docker Container using the next co
 ```
 docker run -e "REPOSITORY=https://github.com/charliwardbd/streamlit-demo1.git" -e "APP_PATH=demo1" -p 8084:8501 charliwar/streamlit:1.4
 ```
-and you can see the result  in http://localhost:8084.
+and you can see the result  in http://localhost:8084/demo1
 
 You can see more options on [Docker Section](https://github.com/charliwardbd/k8s-streamlit/blob/master/docker/Dockerfile)
