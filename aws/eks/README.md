@@ -3,6 +3,11 @@ Foldering with config for deploy [EKS - Amazon Elastic Kubenetes Service](https:
 
 This project enable de posibilities to deploy one EKS cluster with only one kubernetes ELB that discover many streamlit project as you need.
 
+![alt text](https://github.com/charliwardbd/k8s-streamlit/tree/multiservice/aws/eks/EKS-diagram.png)
+
+![alt text](https://github.com/charliwardbd/k8s-streamlit/tree/multiservice/aws/eks/EKS-diagram.png?raw=true)
+
+
 ### Create and configure EKS Cluster
 1. Create EC2 Instance
 
