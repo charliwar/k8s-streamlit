@@ -1,5 +1,5 @@
 # EKS Deployment
-Foldering with config for deploy EKS cluster configured for deploy multiple [streamlit.io](https://streamlit.io/) specifying only repository of streamlit repository code.
+Foldering with config for deploy [EKS - Amazon Elastic Kubenetes Service](https://aws.amazon.com/es/eks/) configured for deploy multiple [streamlit.io](https://streamlit.io/) specifying only repository of streamlit repository code.
 
 This project enable de posibilities to deploy one EKS cluster with only one kubernetes ELB that discover many streamlit project as you need.
 
