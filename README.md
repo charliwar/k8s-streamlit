@@ -1,46 +1,12 @@
-# k8s-streamlit
-docker build --tag 'streamlit' .
+This project contains the configuration needed to deploy multiple [streamlit.io](https://streamlit.io/) repository codes using the next kubernetes clusters:
 
-docker run -e "REPOSITORY=https://github.com/charliwardbd/streamlit-demo1.git" -p 8082:8501 k8s-streamlit -ti bash
+- [EKS - Amazon Elastic Kubenetes Service](https://github.com/charliwardbd/k8s-streamlit/tree/multiservice/aws/eks)
 
-- Create User
-Save credentials
+##### Run on Local
+For testing purpose you can run on local in a Docker Container using the next command.
+```
+docker run -e "REPOSITORY=https://github.com/charliwardbd/streamlit-demo1.git" -e "APP_PATH=demo1" -p 8084:8501 charliwar/streamlit:1.4
+```
+and you can see the result  in http://localhost:8084/demo1
 
-- Create EC2 Instance
-Save credentials
-
-- Connect to EC2 instance
-
-- Update
-sudo yum update
-aws --version
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-which aws
-sudo ./aws/install --bin-dir /usr/bin --install-dir /usr/bin/aws-cli --update
-aws --version
-
-- Configure AWS services
-
-aws configure
-    - Credentials saved
-    - us-east-1
-    - json 
-
-curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.16.8/2020-04-16/bin/linux/amd64/kubectl
-chmod +x ./kubectl
-mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
-kubectl version --short --client
-curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-sudo mv /tmp/eksctl /usr/bin
-eksctl version
-eksctl create cluster --name dev --version 1.16 --region us-east-1 --nodegroup-name standard-workers --node-type t3.micro --nodes 3 --nodes-min 1 --nodes-max 4 --managed
-sudo yum install -y git
-
-- Clone repository
-git clone https://github.com/charliwardbd/k8s-streamlit
-
-- Apply services an deployment 
-kubectl apply -f ./streamlit-deployment.yaml
-
-kubectl apply -f ./streamlit-svc.yaml
+You can see more options on [Docker Section](https://github.com/charliwardbd/k8s-streamlit/blob/master/docker/Dockerfile)
