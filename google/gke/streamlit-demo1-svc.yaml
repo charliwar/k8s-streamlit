@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streamlit-demo1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: streamlit-demo1
+  template:
+    metadata:
+      labels:
+        app: streamlit-demo1
+    spec:
+      containers:
+      - name: streamlit-demo1
+        image: charliwar/streamlit:1.4
+        ports:
+        - containerPort : 8501  # which port of the container is exposed to the Pod
+        env:
+        - name : REPOSITORY
+          value : "https://github.com/charliwardbd/streamlit-demo1.git"
+        - name : APP_PATH
+          value : "demo1"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: streamlit-demo1-svc
+spec:
+  ports:
+  - port: 80
+    targetPort: 8501
+    protocol: TCP
+  selector:
+    app: streamlit-demo1
