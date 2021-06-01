@@ -73,12 +73,12 @@ kubectl apply -f aws/eks/default-server-secret.yaml
 kubectl apply -f aws/eks/nginx-config.yaml
 ```
 
-5. Create roles for AWS perrmissions
+5. Create roles EKS perrmissions
 ```
 kubectl apply -f aws/eks/rbac.yaml
 ```
 
-6. Create IngressClaas (onli for cluster 1.18 or greater)
+6. Create IngressClaas (only for cluster 1.18 or greater)
 ```
 kubectl apply -f aws/eks/ingress-class.yaml
 ```
@@ -115,6 +115,22 @@ hostname.mydomain.com.           A.    ALIAS abfxxxxxxxdXXXXXx990XXXXXxxxxxx-e3b
 ```
 kubectl apply -f path-ingress.yaml
 ```
+
+#### Deploying Services on Cluster
+
+For testing you can go to the navigator and put the URL of your load balancer if you put this url on path-ingress.yaml in host
+
+```
+.........
+		- host: hostname.mydomain.com (or ELB load balancer url )
+        http:
+        	paths:
+            - path: /demo1
+........
+```
+
+Or you can put the ELB url in navigator passing the header " Host : hostname.mydomain.com"
+
 
 
 
