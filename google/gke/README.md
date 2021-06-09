@@ -8,6 +8,9 @@
 - Add key on metadata of Compute Enginde
     Compute-Engine --> Metadada --> SSH keys
 
+- Install kubectl 
+  gcloud components install kubectl
+
 - Enable API GKE
 
 - Create GKE Cluster
@@ -54,13 +57,13 @@ kubectl get service nginx-ingress-nginx-ingress
 
 - Deploy pods and services
 ```
-kubectl apply -f streamlit-demo1-svc.yaml
-kubectl apply -f streamlit-demo2-svc.yaml
+kubectl apply -f google/gke/streamlit-demo1-svc.yaml
+kubectl apply -f google/gke/streamlit-demo2-svc.yaml
 ```
 
 - Create ingress resources used by nginx controller
 
-kubectl apply -f path-ingress.yaml
+kubectl apply -f google/gke/path-ingress.yaml
 
 
 References
